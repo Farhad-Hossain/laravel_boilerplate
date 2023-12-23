@@ -120,24 +120,44 @@
                                     </div>
                                 </div>
                                 <div class="p-3">
-                                    <h4 class="font-size-18 mt-2 text-center">Free Register</h4>
-                                    <p class="text-muted text-center mb-4">Get your free Admiria account now.</p>
+                                    <h4 class="font-size-18 mt-2 text-center">{{ __('Register') }}</h4>
+                                    <p class="text-muted text-center mb-4">Get your account now.</p>
     
-                                    <form class="form-horizontal" action="index.html">
+                                    <form class="form-horizontal" action="{{ route('register') }}" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">Name</label>
+                                            <input id="username" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+    
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">Email</label>
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+    
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Password</label>
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="useremail">Email</label>
-                                            <input type="email" class="form-control" id="useremail" placeholder="Enter email">
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>
     
                                         <div class="mb-3">
@@ -152,16 +172,13 @@
                                             </div>
                                         </div>
                                     </form>
-    
                                 </div>
-    
                             </div>
                         </div>
                         <div class="mt-5 text-center position-relative">
                             <p class="text-white">Already have an account ?  <a href="{{route('login')}}" class="font-weight-bold text-primary"> Login </a> </p>
-                            <p class="text-white"><script>document.write(new Date().getFullYear())</script> © Admiria. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                            <p class="text-white"><script>document.write(new Date().getFullYear())</script> © Softheaven. Crafted with <i class="mdi mdi-heart text-danger"></i> by Farhad Hossain</p>
                         </div>
-    
                     </div>
                 </div>
             </div>
@@ -175,8 +192,6 @@
         <script src="{{asset('b')}}/libs/metismenu/metisMenu.min.js"></script>
         <script src="{{asset('b')}}/libs/simplebar/simplebar.min.js"></script>
         <script src="{{asset('b')}}/libs/node-waves/waves.min.js"></script>
-
         <script src="{{asset('b')}}/js/app.js"></script>
-
     </body>
 </html>

@@ -22,10 +22,18 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () {
+    Route::group(['prefix'=>'permission', 'as'=>'permission.'], function () {
+        Route::get('roles', [B\PermissionManageController::class, 'getRoles'])->name('roles');
+        Route::post('create-role', [B\PermissionManageController::class, 'createRole'])->name('create_role');
+    });
+
+
     Route::get('', [B\DashboardController::class, 'index'])->name('dashboard');
     Route::get('basic-table', [B\DashboardController::class, 'basic_table'])->name('basic_table');
+
+    
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
