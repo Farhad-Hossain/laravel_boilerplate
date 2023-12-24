@@ -1,6 +1,5 @@
 $(function() {
     "use strict";
-
 	
 // chart 1
 
@@ -313,5 +312,4 @@ var ctx = document.getElementById("chart4").getContext('2d');
 
 
 
-   });	 
-   
+   });

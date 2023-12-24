@@ -37,8 +37,7 @@
 		
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
-				@yield('content')
+			<div class="page-content" id="content">
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -66,10 +65,13 @@
 	<script src="{{asset('b')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="{{asset('b')}}/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="{{asset('b')}}/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="{{asset('b')}}/plugins/chartjs/js/chart.js"></script>
+	{{-- <script src="{{asset('b')}}/plugins/chartjs/js/chart.js"></script> --}}
+	{{--
 	<script src="{{asset('b')}}/js/index.js"></script>
+	--}}
 	<!--app JS-->
 	<script src="{{asset('b')}}/js/app.js"></script>
+	<script src="{{asset('b')}}/js/ajax.js"></script>
 	<script>
 		new PerfectScrollbar(".app-container")
 	</script>
