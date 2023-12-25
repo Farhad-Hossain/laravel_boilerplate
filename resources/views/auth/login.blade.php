@@ -78,104 +78,134 @@
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Login | Admiria - Admin & Dashboard Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
-        <meta content="Themesbrand" name="author">
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('b')}}/images/favicon.ico">
-    
-        <!-- Bootstrap Css -->
-        <link href="{{asset('b')}}/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
-        <!-- Icons Css -->
-        <link href="{{asset('b')}}/css/icons.min.css" rel="stylesheet" type="text/css">
-        <!-- App Css-->
-        <link href="{{asset('b')}}/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
-    
-    </head>
 
-    <body>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="{{asset('b')}}/images/favicon-32x32.png" type="image/png" />
+	<!--plugins-->
+	<link href="{{asset('b')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="{{asset('b')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="{{asset('b')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{{asset('b')}}/css/pace.min.css" rel="stylesheet" />
+	<script src="{{asset('b')}}/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{{asset('b')}}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{asset('b')}}/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="{{asset('b')}}/css/app.css" rel="stylesheet">
+	<link href="{{asset('b')}}/css/icons.css" rel="stylesheet">
+	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+</head>
 
-        <!-- Loader -->
-            <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+<body class="">
+	<!--wrapper-->
+	<div class="wrapper">
+		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+			<div class="container">
+				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+					<div class="col mx-auto">
+						<div class="card mb-0">
+							<div class="card-body">
+								<div class="p-4">
+									<div class="mb-3 text-center">
+										<img src="{{asset('b')}}/images/logo-icon.png" width="60" alt="" />
+									</div>
+									<div class="text-center mb-4">
+										<h5 class="">Rocker Admin</h5>
+										<p class="mb-0">Please log in to your account</p>
+									</div>
+									<div class="form-body">
+										<form class="row g-3" action="{{route('login')}}" method="POST">
+                                            @csrf
+											<div class="col-12">
+                                                <label for="inputEmail" class="form-label">Email</label>
+                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+											</div>
+											<div class="col-12">
+                                                <label for="password" class="form-label">{{ __('Password') }}</label>
+												<div class="input-group" id="show_hide_password">
+													<input type="password" name="password" class="form-control border-end-0 @error('password') is-invalid @enderror" id="inputChoosePassword" value="" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-check form-switch">
+													<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+												</div>
+											</div>
+											<div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+											</div>
+											<div class="col-12">
+												<div class="d-grid">
+													<button type="submit" class="btn btn-primary">Sign in</button>
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="text-center ">
+													<p class="mb-0">Don't have an account yet? <a href="{{route('register')}}">Sign up here</a>
+													</p>
+												</div>
+											</div>
+										</form>
+									</div>
+                                    
+                                    {{--
+									<div class="login-separater text-center mb-5"> <span>OR SIGN IN WITH</span>
+										<hr/>
+									</div>
+									<div class="list-inline contacts-social text-center">
+										<a href="javascript:;" class="list-inline-item bg-facebook text-white border-0 rounded-3"><i class="bx bxl-facebook"></i></a>
+										<a href="javascript:;" class="list-inline-item bg-twitter text-white border-0 rounded-3"><i class="bx bxl-twitter"></i></a>
+										<a href="javascript:;" class="list-inline-item bg-google text-white border-0 rounded-3"><i class="bx bxl-google"></i></a>
+										<a href="javascript:;" class="list-inline-item bg-linkedin text-white border-0 rounded-3"><i class="bx bxl-linkedin"></i></a>
+									</div>
+                                    --}}
 
-         <!-- Begin page -->
-         <div class="accountbg" style="background: url('{{asset('b')}}/images/bg.jpg');background-size: cover;background-position: center;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+			</div>
+		</div>
+	</div>
+	<!--end wrapper-->
+	<!-- Bootstrap JS -->
+	<script src="{{asset('b')}}/js/bootstrap.bundle.min.js"></script>
+	<!--plugins-->
+	<script src="{{asset('b')}}/js/jquery.min.js"></script>
+	<script src="{{asset('b')}}/plugins/simplebar/js/simplebar.min.js"></script>
+	<script src="{{asset('b')}}/plugins/metismenu/js/metisMenu.min.js"></script>
+	<script src="{{asset('b')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<!--Password show & hide js -->
+	<script>
+		$(document).ready(function () {
+			$("#show_hide_password a").on('click', function (event) {
+				event.preventDefault();
+				if ($('#show_hide_password input').attr("type") == "text") {
+					$('#show_hide_password input').attr('type', 'password');
+					$('#show_hide_password i').addClass("bx-hide");
+					$('#show_hide_password i').removeClass("bx-show");
+				} else if ($('#show_hide_password input').attr("type") == "password") {
+					$('#show_hide_password input').attr('type', 'text');
+					$('#show_hide_password i').removeClass("bx-hide");
+					$('#show_hide_password i').addClass("bx-show");
+				}
+			});
+		});
+	</script>
+	<!--app JS-->
+	<script src="{{asset('b')}}/js/app.js"></script>
+</body>
 
-        <div class="account-pages mt-5 pt-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-5 col-xl-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center mt-4">
-                                    <div class="mb-3">
-                                        <a href="index.html"><img src="{{asset('b')}}/images/logo.png" height="30" alt="logo"></a>
-                                    </div>
-                                </div>
-                                <div class="p-3">
-                                    <h4 class="font-size-18 mt-2 text-center">Welcome Back !</h4>
-                                    <p class="text-muted text-center mb-4">Sign in to continue to Admiria.</p>
-    
-                                    <form class="form-horizontal" action="index.html">
-    
-                                        <div class="mb-3">
-                                            <label class="form-label" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
-                                        </div>
-    
-                                        <div class="row mt-4">
-                                            <div class="col-sm-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="customControlInline">
-                                                    <label class="form-check-label" for="customControlInline">
-                                                        Remember me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 text-end">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
-                                            </div>
-                                        </div>
-    
-                                        <div class="mb-0 row">
-                                            <div class="col-12 mt-4">
-                                                <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-                                            </div>
-                                        </div>
-                                    </form>
-    
-                                </div>
-    
-                            </div>
-                        </div>
-                        <div class="mt-5 text-center position-relative">
-                            <p class="text-white">Don't have an account ? <a href="{{ route('register') }}" class="fw-bold text-primary"> Signup Now </a> </p>
-                            <p class="text-white"><script>document.write(new Date().getFullYear())</script> © Admiria. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                        </div>
-    
-                    </div>
-                </div>
-            </div>
-        </div>
-
-                             
-        <!-- JAVASCRIPT -->
-        <script src="{{asset('b')}}/libs/jquery/jquery.min.js"></script>
-        <script src="{{asset('b')}}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="{{asset('b')}}/libs/metismenu/metisMenu.min.js"></script>
-        <script src="{{asset('b')}}/libs/simplebar/simplebar.min.js"></script>
-        <script src="{{asset('b')}}/libs/node-waves/waves.min.js"></script>
-
-        <script src="{{asset('b')}}/js/app.js"></script>
-
-    </body>
 </html>
-
