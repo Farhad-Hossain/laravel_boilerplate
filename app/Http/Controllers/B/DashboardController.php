@@ -10,16 +10,16 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         if ( $this->ajax ) {
-            return view('b.pages.dashboard');
+            return view('pages.dashboard');
         }
-        return view('b.base');
+        return view('base');
     }
 
     public function basic_table(Request $request)
     {
         if ( $this->ajax ) {
-            return view('b.pages.basic_table');
+            return view('pages.basic_table');
         }
-        return view('b.base');
+        return view('base');
     }
 }

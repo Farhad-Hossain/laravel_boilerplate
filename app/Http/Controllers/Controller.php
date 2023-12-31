@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     
     public $ajax = false;
-    public $defaultView = 'b.base';
+    public $defaultView = 'base';
 
     public function __construct(Request $request)
     {

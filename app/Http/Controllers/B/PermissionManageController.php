@@ -12,9 +12,9 @@ class PermissionManageController extends Controller
     {
         if ( $this->ajax ) {
             $roles = Role::all();
-            return view("b.pages.roles", compact("roles"));
+            return view("inc.tables.roles", compact("roles"));
         } else {
-            return view('b.base');
+            return view('base');
         }
         
     }

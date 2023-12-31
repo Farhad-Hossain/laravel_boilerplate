@@ -12,6 +12,7 @@
 	<link href="{{asset('b')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="{{asset('b')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 	<link href="{{asset('b')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
+	<link href="{{asset('b')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 	<!-- loader-->
 	<link href="{{asset('b')}}/css/pace.min.css" rel="stylesheet"/>
 	<script src="{{asset('b')}}/js/pace.min.js"></script>
@@ -32,8 +33,8 @@
 <body>
 	<!--wrapper-->
 	<div class="wrapper">
-		@include('b.inc.sidebar')
-		@include('b.inc.header')
+		@include('inc.sidebar')
+		@include('inc.header')
 		
 		<!--start page wrapper -->
 		<div class="page-wrapper">
@@ -53,8 +54,8 @@
 	</div>
 	<!--end wrapper-->
 
-	@include('b.inc.search_modal')
-	@include('b.inc.theme_switcher')
+	@include('inc.search_modal')
+	@include('inc.theme_switcher')
 
 	<!-- Bootstrap JS -->
 	<script src="{{asset('b')}}/js/bootstrap.bundle.min.js"></script>
@@ -72,6 +73,8 @@
 	<!--app JS-->
 	<script src="{{asset('b')}}/js/app.js"></script>
 	<script src="{{asset('b')}}/js/ajax.js"></script>
+	<script src="{{asset('b')}}/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="{{asset('b')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 	<script>
 		new PerfectScrollbar(".app-container")
 	</script>
