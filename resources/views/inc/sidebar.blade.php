@@ -32,7 +32,7 @@
         </li>
         <li class="menu-label">UI Elements</li>
         <li>
-            <a href="widgets.html">
+            <a href="">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
                 <div class="menu-title">Widgets</div>

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="{{asset('b')}}/css/semi-dark.css"/>
 	<link rel="stylesheet" href="{{asset('b')}}/css/header-colors.css"/>
 	@stack('css')
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+	<title>Admin | {{  env('APP_NAME') }}</title>
 </head>
 
 <body>
@@ -38,6 +38,10 @@
 		
 		<!--start page wrapper -->
 		<div class="page-wrapper">
+			<div class="page-content" id="alert-container" style="display: none;">
+				<p class="page-content alert alert-success w-100 mt-0 mb-0" id="message"></p> 
+			</div>
+			
 			<div class="page-content" id="content">
 			</div>
 		</div>
@@ -75,7 +79,25 @@
 	<script src="{{asset('b')}}/js/ajax.js"></script>
 	<script src="{{asset('b')}}/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="{{asset('b')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
 	<script>
+		function closeModal(id)
+		{
+			$(`#${id}`).modal('hide');
+		}
+		function refreshCurrentPage()
+		{
+			let currentUrl = window.location;
+			$(document).find(`[href='${currentUrl}']`).trigger('click');
+		}
+		function showAlert()
+		{
+			$(`#alert-container`).show();
+			setTimeout(function () {
+				$(`#alert-container`).hide();
+			},3000);
+			
+		}
 		new PerfectScrollbar(".app-container")
 	</script>
 	@stack('js')

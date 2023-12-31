@@ -21,26 +21,24 @@
 @endslot
 
 @slot('html')
-    @component('inc.modal', [
+    @component('inc.modal_form', [
         'id' => 'add-role-modal',
-        'title' => 'Add Role'
+        'title' => 'Add Role',
+        'action' => route('b.permission.create_role'),
+        'method' => 'POST'
     ])
-        @slot('body')
-            @component('inc.form', ['action'=>'', 'method'=>'POST'])
-                @slot('inputs')
-                <div class="row">
-                    <div class="col-sm-12 mb-3">
-                        <label for="">Role</label>
-                        <input type="text" name="name" class="form-control form-control-sm" id="">
-                    </div>
-
-                    <div class="col-sm-12 mb-3">
-                        <label for="">Description</label>
-                        <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
-                    </div>
+        @slot('inputs')
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <label for="">Role</label>
+                    <input type="text" name="name" class="form-control form-control-sm" id="">
                 </div>
-                @endslot
-            @endcomponent
+
+                <div class="col-sm-12 mb-3">
+                    <label for="">Description</label>
+                    <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
         @endslot
     @endcomponent
 @endslot
@@ -49,6 +47,7 @@
 <script>
     $(document).on('click', `#add-role-btn`, function () {
         $(`#add-role-modal`).modal('show');
+        htmx.process(document.body);
     })
 </script>
 @endslot

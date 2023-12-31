@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example2" class="table table-striped table-bordered">
+            <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         @foreach($headers as $header)
@@ -27,19 +27,18 @@
             </table>
         </div>
     </div>
-
     {{ $html }}
 </div>
 
 <script>
 $(document).ready(function() {
-    var table = $('#example2').DataTable( {
+    var table = $('#datatable').DataTable( {
         lengthChange: false,
         buttons: [ 'copy', 'excel', 'pdf', 'print']
     } );
     
     table.buttons().container()
-        .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+        .appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
 } );
 </script>
 
