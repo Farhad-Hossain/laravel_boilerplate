@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="{{asset('b')}}/css/dark-theme.css"/>
 	<link rel="stylesheet" href="{{asset('b')}}/css/semi-dark.css"/>
 	<link rel="stylesheet" href="{{asset('b')}}/css/header-colors.css"/>
+
+	
 	@stack('css')
 	<title>Admin | {{  env('APP_NAME') }}</title>
 </head>
@@ -76,10 +78,12 @@
 	--}}
 	<!--app JS-->
 	<script src="{{asset('b')}}/js/app.js"></script>
-	<script src="{{asset('b')}}/js/ajax.js"></script>
+	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
 	<script src="{{asset('b')}}/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="{{asset('b')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	<script src="{{asset('b')}}/js/ajax.js"></script>
+	
+
 	<script>
 		function closeModal(id)
 		{
@@ -94,7 +98,7 @@
 		{
 			$(`#alert-container`).show();
 			setTimeout(function () {
-				$(`#alert-container`).hide();
+				$(`#alert-container`).hide('slow');
 			},3000);
 			
 		}

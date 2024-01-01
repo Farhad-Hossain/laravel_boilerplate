@@ -1,17 +1,19 @@
 $(document).on("click", ".metismenu li a", function (e) {
 	e.preventDefault();
 
-	var page = $(this).attr("href");
+	let page = $(this).attr("href");
+	let title = $(this).attr("title");
+
 	if (page == "javascript: void(0);") return false;
 
 	if ($(this).attr("target") == "_self") { window.location.href = page; return true };
 	if ($(this).attr("target") == "_blank") window.open(page, "_blank");
 
 	if (page == "javascript: void(0);") return false;
-	call_ajax_page(page);
+	call_ajax_page(page, title);
 });
 
-function call_ajax_page(page) {
+function call_ajax_page(page, title) {
 	history.pushState(null, null, page);
 
 	$('#content').html(
@@ -28,10 +30,12 @@ function call_ajax_page(page) {
 			$(window).scrollTop(0);
 		}
 	});
+	document.title = 'Admin | '+title;
+	htmx.process(document.body);
 }
 
 $(document).ready(function () {
 	var path = window.location;
 	call_ajax_page(path);
-	
+	htmx.process(document.body);
 });

@@ -23,8 +23,12 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () {
     Route::group(['prefix'=>'permission', 'as'=>'permission.'], function () {
-        Route::get('roles', [B\PermissionManageController::class, 'getRoles'])->name('roles');
-        Route::post('create-role', [B\PermissionManageController::class, 'createRole'])->name('create_role');
+        Route::get('/roles', [B\PermissionManageController::class, 'getRoles'])->name('roles');
+        Route::post('/create-role', [B\PermissionManageController::class, 'createRole'])->name('create_role');
+        Route::match(['GET','POST'],'/role-details', [B\PermissionManageController::class, 'getPostRoleDetails'])->name('role.details');
+
+        Route::get('/permisions', [B\PermissionManageController::class, 'getPermissions'])->name('list');
+        Route::post('/permisions/create', [B\PermissionManageController::class, 'createPermission'])->name('permission.create');
     });
 
 

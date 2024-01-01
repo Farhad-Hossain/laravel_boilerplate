@@ -1,24 +1,20 @@
 @component('inc.datatable', [
-    'title' => 'Roles',
+    'title' => 'Permissions',
     'headers' => [
         'Name',
-        'Description',
-        'Action'
+        'Description'
     ],
 ])
 
 @slot('button')
-    <button class="btn btn-sm btn-primary" id="add-role-btn">Add Role</button>
+    <button class="btn btn-sm btn-primary" id="add-permission-btn">Add Permission</button>
 @endslot
 
 @slot('body')
-    @forelse( $roles as $role )
+    @forelse( $permissions as $p )
         <tr>
-            <td>{{ $role->name }}</td>
-            <td>{{ $role->description }}</td>
-            <td>
-                <button class="btn btn-sm btn-primary" hx-get="{{route('b.permission.role.details')}}" data-id="{{$role->id}}">Details</button>
-            </td>
+            <td>{{ $p->name }}</td>
+            <td>{{ $p->description }}</td>
         </tr>
     @empty
     @endforelse
@@ -26,15 +22,15 @@
 
 @slot('html')
     @component('inc.modal_form', [
-        'id' => 'add-role-modal',
-        'title' => 'Add Role',
-        'action' => route('b.permission.create_role'),
+        'id' => 'add-permission-modal',
+        'title' => 'Add Permission',
+        'action' => route('b.permission.permission.create'),
         'method' => 'POST'
     ])
         @slot('inputs')
             <div class="row">
                 <div class="col-sm-12 mb-3">
-                    <label for="">Role</label>
+                    <label for="">Permission</label>
                     <input type="text" name="name" class="form-control form-control-sm" id="">
                 </div>
 
@@ -49,11 +45,10 @@
 
 @slot('js')
 <script>
-    $(document).on('click', `#add-role-btn`, function () {
-        $(`#add-role-modal`).modal('show');
+    $(document).on('click', `#add-permission-btn`, function () {
+        $(`#add-permission-modal`).modal('show');
         htmx.process(document.body);
     })
-
 </script>
 @endslot
 

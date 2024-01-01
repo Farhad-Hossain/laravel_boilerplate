@@ -26,8 +26,8 @@
                 <div class="menu-title">Permissions</div>
             </a>
             <ul>
-                <li> <a href="{{route('b.permission.roles')}}"><i class='bx bx-radio-circle'></i>Roles</a></li>
-                <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Permissions</a></li>
+                <li> <a href="{{route('b.permission.roles')}}" title="Roles"><i class='bx bx-radio-circle'></i>Roles</a></li>
+                <li> <a href="{{route('b.permission.list')}}" title="Permissions"><i class='bx bx-radio-circle'></i>Permissions</a></li>
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
