@@ -4,8 +4,8 @@ namespace App\Http\Controllers\B;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Auth;
 
 class PermissionManageController extends Controller
@@ -53,8 +53,22 @@ class PermissionManageController extends Controller
         } 
     }
 
-    public function getPostRoleDetails(Request $request)
+    public function getPostRoleDetails(Request $request, $roleId)
     {
-        dd($request->all());
+        $role = Role::find($roleId);
+        $permissions = Permission::all();
+
+        if ( $request->method() == 'POST' ) {
+            $role->syncPermissions([]);
+            foreach( $request->permissions as $p ) {
+                $permission = Permission::firstWhere('id', $p);
+                $role->givePermissionTo($permission);
+            }
+        } else if ( $this->ajax ) {
+            if ( $role ) {
+                return view('pages.role_details', compact('role', 'permissions'));
+            }
+        }
+        return view('base');
     }
 }

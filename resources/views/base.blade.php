@@ -6,26 +6,27 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{{asset('b')}}/images/favicon-32x32.png" type="image/png"/>
+	<link rel="icon" href="{{asset('b')}}/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
-	<link href="{{asset('b')}}/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
 	<link href="{{asset('b')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="{{asset('b')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="{{asset('b')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
-	<link href="{{asset('b')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link href="{{asset('b')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 	<!-- loader-->
-	<link href="{{asset('b')}}/css/pace.min.css" rel="stylesheet"/>
+	<link href="{{asset('b')}}/css/pace.min.css" rel="stylesheet" />
 	<script src="{{asset('b')}}/js/pace.min.js"></script>
 	<!-- Bootstrap CSS -->
 	<link href="{{asset('b')}}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="{{asset('b')}}/css/bootstrap-extended.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="{{asset('b')}}/css/app.css" rel="stylesheet">
 	<link href="{{asset('b')}}/css/icons.css" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="{{asset('b')}}/css/dark-theme.css"/>
-	<link rel="stylesheet" href="{{asset('b')}}/css/semi-dark.css"/>
-	<link rel="stylesheet" href="{{asset('b')}}/css/header-colors.css"/>
+	<link rel="stylesheet" href="{{asset('b')}}/css/dark-theme.css" />
+	<link rel="stylesheet" href="{{asset('b')}}/css/semi-dark.css" />
+	<link rel="stylesheet" href="{{asset('b')}}/css/header-colors.css" />
+	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 
 	
 	@stack('css')
@@ -55,7 +56,7 @@
 		  <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		<footer class="page-footer">
-			<p class="mb-0">Copyright © 2022. All right reserved.</p>
+			<p class="mb-0">Copyright © {{ date('Y') }}. All right reserved.</p>
 		</footer>
 	</div>
 	<!--end wrapper-->
@@ -63,24 +64,16 @@
 	@include('inc.search_modal')
 	@include('inc.theme_switcher')
 
-	<!-- Bootstrap JS -->
 	<script src="{{asset('b')}}/js/bootstrap.bundle.min.js"></script>
 	<!--plugins-->
 	<script src="{{asset('b')}}/js/jquery.min.js"></script>
 	<script src="{{asset('b')}}/plugins/simplebar/js/simplebar.min.js"></script>
 	<script src="{{asset('b')}}/plugins/metismenu/js/metisMenu.min.js"></script>
 	<script src="{{asset('b')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-	<script src="{{asset('b')}}/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="{{asset('b')}}/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-	{{-- <script src="{{asset('b')}}/plugins/chartjs/js/chart.js"></script> --}}
-	{{--
-	<script src="{{asset('b')}}/js/index.js"></script>
-	--}}
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="{{asset('b')}}/plugins/select2/js/select2-custom.js"></script>
 	<!--app JS-->
 	<script src="{{asset('b')}}/js/app.js"></script>
-	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-	<script src="{{asset('b')}}/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="{{asset('b')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 	<script src="{{asset('b')}}/js/ajax.js"></script>
 	
 

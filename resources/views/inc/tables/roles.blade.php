@@ -17,7 +17,7 @@
             <td>{{ $role->name }}</td>
             <td>{{ $role->description }}</td>
             <td>
-                <button class="btn btn-sm btn-primary" hx-get="{{route('b.permission.role.details')}}" data-id="{{$role->id}}">Details</button>
+                <a class="btn btn-sm btn-primary role-details-btn" href="{{route('b.permission.role.details', ['role_id'=>$role->id])}}">Details</a>
             </td>
         </tr>
     @empty
@@ -53,7 +53,9 @@
         $(`#add-role-modal`).modal('show');
         htmx.process(document.body);
     })
-
+    $(document).on('click', `#role-details-btn`, function (){
+        alert( $(this).data('link') );
+    })
 </script>
 @endslot
 

@@ -25,10 +25,15 @@ Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () 
     Route::group(['prefix'=>'permission', 'as'=>'permission.'], function () {
         Route::get('/roles', [B\PermissionManageController::class, 'getRoles'])->name('roles');
         Route::post('/create-role', [B\PermissionManageController::class, 'createRole'])->name('create_role');
-        Route::match(['GET','POST'],'/role-details', [B\PermissionManageController::class, 'getPostRoleDetails'])->name('role.details');
+        Route::match(['GET','POST'],'/role-details/{role_id}', [B\PermissionManageController::class, 'getPostRoleDetails'])->name('role.details');
 
         Route::get('/permisions', [B\PermissionManageController::class, 'getPermissions'])->name('list');
         Route::post('/permisions/create', [B\PermissionManageController::class, 'createPermission'])->name('permission.create');
+    });
+
+    Route::group(['prefix'=>'users', 'as'=>'users.'], function (){
+        Route::get('/list', [B\UserManageController::class, 'getUserList'])->name('list');
+        Route::match(['GET', 'POST'], '/create', [B\UserManageController::class, 'createUser'])->name('create');
     });
 
 
