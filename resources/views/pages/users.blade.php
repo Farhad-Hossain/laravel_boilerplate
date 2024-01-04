@@ -47,6 +47,7 @@
                     <label for="">Password</label>
                     <input type="password" name="password" class="form-control" required>
                 </div>
+                
             </div>
         @endslot
     @endcomponent

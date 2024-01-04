@@ -12,11 +12,15 @@
 			<hr/>
 			<div class="d-flex align-items-center justify-content-between">
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
+					<input 
+						class="form-check-input" 
+						type="radio" 
+						name="flexRadioDefault"
+						id="lightmode">
 					<label class="form-check-label" for="lightmode">Light</label>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
+					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode" checked>
 					<label class="form-check-label" for="darkmode">Dark</label>
 				</div>
 				<div class="form-check">

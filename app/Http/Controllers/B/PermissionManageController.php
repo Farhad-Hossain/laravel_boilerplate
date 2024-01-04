@@ -14,7 +14,7 @@ class PermissionManageController extends Controller
     {
         if ( $this->ajax ) {
             $roles = Role::all();
-            return view("inc.tables.roles", compact("roles"));
+            return view("pages.roles", compact("roles"));
         } else {
             return view('base');
         }

@@ -1,3 +1,4 @@
+<x-datatable_lib />
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <span>{{ $title ?? 'Title' }}</span>
