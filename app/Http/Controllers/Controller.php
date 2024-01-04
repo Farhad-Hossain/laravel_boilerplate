@@ -20,4 +20,15 @@ class Controller extends BaseController
             $this->ajax = true;
         }
     }
+
+    public function view($subView, $data=[])
+    {
+        if ( $this->ajax ) {
+            return view($subView, $data)->render();
+        } else {
+            return view('base', [
+                'subView' => view($subView, $data)->render()
+            ])->render();
+        }
+    }
 }

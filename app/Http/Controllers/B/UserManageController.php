@@ -11,10 +11,7 @@ class UserManageController extends Controller
     public function getUserList(Request $request)
     {
         $users = User::all();
-        if ( $this->ajax ) {
-            return view('pages.users', compact('users'));
-        }
-        return view('base');
+        return $this->view('pages.users', compact('users'));
     }
     public function createUser(Request $request)
     {
@@ -24,13 +21,29 @@ class UserManageController extends Controller
             }
         }
         if ( $request->method() == 'POST' ) {
-
+            $user = User::create($request->all());
+            if ( $user ) {
+                return view('components.alert', [
+                    'type'=>'success',
+                    'message'=>'User Created Successfully.'
+                ])->render();
+            } else {
+                return view('components.alert', [
+                    'type'=>'danger',
+                    'message'=>'Something went wrong.'
+                ])->render();
+            }
         }
         return view('base');
     }
     public function updateUser(Request $request)
     {
-
+        
+    }
+    public function userDetails(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+        return view('pages.user_details', compact('user'))->render();
     }
     
 }

@@ -1,0 +1,1 @@
+<button class="btn btn-sm btn-primary" id="{{ isset($id) ? $id : '' }}">{{$text}}</button>

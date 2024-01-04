@@ -12,12 +12,8 @@ class PermissionManageController extends Controller
 {
     public function getRoles(Request $request)
     {
-        if ( $this->ajax ) {
-            $roles = Role::all();
-            return view("pages.roles", compact("roles"));
-        } else {
-            return view('base');
-        }
+        $roles = Role::all();
+        return $this->view("pages.roles", compact("roles"));
         
     }
     public function createRole(Request $request)
@@ -32,11 +28,8 @@ class PermissionManageController extends Controller
 
     public function getPermissions(Request $request)
     {
-        if ( $this->ajax ) {
-            $permissions = Permission::all();
-            return view("inc.tables.permissions", compact('permissions'));
-        }
-        return view('base');
+        $permissions = Permission::all();
+        return $this->view("inc.tables.permissions", compact('permissions'));
     }
 
     public function createPermission(Request $request)
@@ -64,11 +57,7 @@ class PermissionManageController extends Controller
                 $permission = Permission::firstWhere('id', $p);
                 $role->givePermissionTo($permission);
             }
-        } else if ( $this->ajax ) {
-            if ( $role ) {
-                return view('pages.role_details', compact('role', 'permissions'));
-            }
-        }
-        return view('base');
+        } 
+        return $this->view('pages.role_details', compact('role', 'permissions'));
     }
 }

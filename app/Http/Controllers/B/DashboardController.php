@@ -9,17 +9,11 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        if ( $this->ajax ) {
-            return view('pages.dashboard');
-        }
-        return view('base');
+        return $this->view('pages.dashboard');   
     }
 
     public function basic_table(Request $request)
     {
-        if ( $this->ajax ) {
-            return view('pages.basic_table');
-        }
-        return view('base');
+        return $this->view('pages.basic_table');
     }
 }

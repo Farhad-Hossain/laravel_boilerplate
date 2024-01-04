@@ -33,9 +33,3 @@ function call_ajax_page(page, title) {
 	document.title = 'Admin | '+title;
 	htmx.process(document.body);
 }
-
-$(document).ready(function () {
-	var path = window.location;
-	call_ajax_page(path);
-	htmx.process(document.body);
-});

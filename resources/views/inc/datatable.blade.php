@@ -1,9 +1,11 @@
 <x-datatable_lib />
 <div class="card">
+    
     <div class="card-header d-flex justify-content-between">
-        <span>{{ $title ?? 'Title' }}</span>
+        <span>{{ isset($title) ? $title : ''}}</span>
         {{ $button ?? '' }}
     </div>
+
     <div class="card-body">
         <div class="table-responsive">
             <table id="datatable" class="table table-striped table-bordered">
@@ -28,7 +30,9 @@
             </table>
         </div>
     </div>
-    {{ $html }}
+
+    {{ isset($html) ? $html : '' }}
+
 </div>
 
 <script>
@@ -42,5 +46,8 @@ $(document).ready(function() {
         .appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
 } );
 </script>
+<link href="{{asset('b')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<script src="{{asset('b')}}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{asset('b')}}/plugins/datatable/js/jquery.dataTables.min.js"></script>
 
-{{ $js ?? '' }}
+{{ isset($js) ? $js : '' }}

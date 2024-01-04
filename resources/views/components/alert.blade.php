@@ -1,0 +1,1 @@
+<p class="page-content alert alert-{{$title}} w-100 mt-0 mb-0" id="message">{{$message}}</p> 

@@ -1,0 +1,1 @@
+<x-title title="Dashboard" />

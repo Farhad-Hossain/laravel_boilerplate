@@ -7,7 +7,7 @@
             </div>
             <form 
                 hx-post="{{$action ?? ''}}" 
-                hx-target="#message" 
+                hx-target="#alert-container" 
                 hx-on:htmx:after-request="closeModal(`{{$id}}`); refreshCurrentPage(); showAlert()"
                 method="{{$method ?? 'GET'}}" 
                 enctype="multipart/form-data">
@@ -24,4 +24,3 @@
     </div>
 </div>
 
-<script src="https://unpkg.com/htmx.org@1.9.10"></script>

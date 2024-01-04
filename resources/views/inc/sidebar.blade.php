@@ -13,7 +13,7 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="">
+            <a href="{{route('b.dashboard')}}">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -39,7 +39,9 @@
             </a>
             <ul>
                 <li> <a href="{{route('b.users.list')}}" title="Users"><i class='bx bx-radio-circle'></i>Users</a></li>
+                {{--
                 <li> <a href="{{route('b.users.create')}}" title="Create User"><i class='bx bx-radio-circle'></i>Create User</a></li>
+                --}}
             </ul>
         </li>
 

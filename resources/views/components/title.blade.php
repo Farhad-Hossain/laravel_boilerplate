@@ -1,0 +1,1 @@
+<span class='d-none' id="page-title">{{ isset($title) ? $title : ''  }}</span>
