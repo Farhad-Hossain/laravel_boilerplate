@@ -43,7 +43,7 @@ class UserManageController extends Controller
     public function userDetails(Request $request, $user_id)
     {
         $user = User::find($user_id);
-        return view('pages.user_details', compact('user'))->render();
+        return $this->view('pages.user_details', compact('user'));
     }
     
 }

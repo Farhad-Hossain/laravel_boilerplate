@@ -1,3 +1,4 @@
+<x-title title="Roles" />
 @component('inc.datatable', [
     'title' => 'Roles',
     'headers' => [
@@ -17,7 +18,10 @@
             <td>{{ $role->name }}</td>
             <td>{{ $role->description }}</td>
             <td>
-                <a class="btn btn-sm btn-primary role-details-btn" href="{{route('b.permission.role.details', ['role_id'=>$role->id])}}">Details</a>
+                <a class="btn btn-sm btn-primary role-details-btn d-link" 
+                    href="{{route('b.permission.role.details', ['role_id'=>$role->id])}}" 
+                    title="Role Details"
+                    >Details</a>
             </td>
         </tr>
     @empty

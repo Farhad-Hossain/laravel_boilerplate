@@ -14,12 +14,12 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary"
-                        hx-get="{{route('b.users.details', ['user_id'=>$user->id])}}"
-                        hx-target="#content"
+                    <a class="btn btn-sm btn-primary d-link"
+                        href="{{route('b.users.details', $user->id)}}"
+                        title="User Details"
                         >
                         See Details
-                    </button>
+                    </a>
                 </td>
             </tr>
         @empty

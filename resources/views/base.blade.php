@@ -20,14 +20,6 @@
 	@include('inc.theme_switcher')
 	<x-footer />
 	@stack('js')
-	<script>
-		$(document).ready(function () {
-			let title = $(`#page-title`).text() ?? '';
-			$(`#url-title`).text('Admin '+"| "+title);
-			// call_ajax_page(path);
-			htmx.process(document.body);
-		});
-	</script>
 </body>
 
 </html>

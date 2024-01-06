@@ -1,4 +1,4 @@
-$(document).on("click", ".metismenu li a", function (e) {
+$(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 	e.preventDefault();
 
 	let page = $(this).attr("href");
@@ -13,7 +13,7 @@ $(document).on("click", ".metismenu li a", function (e) {
 	call_ajax_page(page, title);
 });
 
-function call_ajax_page(page, title) {
+function call_ajax_page(page, title='') {
 	history.pushState(null, null, page);
 
 	$('#content').html(
