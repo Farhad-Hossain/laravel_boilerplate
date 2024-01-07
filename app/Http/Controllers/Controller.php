@@ -24,12 +24,13 @@ class Controller extends BaseController
     public function view($subView, $data=[])
     {
         try {
+            $subView = view($subView, $data);
             if ( $this->ajax ) {
-                return view($subView, $data)->render();
+                return $subView;
             } else {
-                return view('base', [
-                    'subView' => view($subView, $data)->render()
-                ])->render();
+                return view($this->defaultView, [
+                    'subView' => $subView
+                ]);
             }
         } catch (\Exception $e) {
             return $e->getMessage();

@@ -37,6 +37,7 @@ Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () 
         Route::get('/list', [B\UserManageController::class, 'getUserList'])->name('list');
         Route::match(['GET', 'POST'], '/create', [B\UserManageController::class, 'createUser'])->name('create');
         Route::get('/user/{id}', [B\UserManageController::class, 'userDetails'])->name('details');
+        Route::post('/save-user/{user_id}', [B\UserManageController::class, 'saveUser'])->name('save');
     });
 
 

@@ -36,9 +36,12 @@ class UserManageController extends Controller
         }
         return view('base');
     }
-    public function updateUser(Request $request)
+    public function saveUser(Request $request, $user_id)
     {
-        
+        $user = User::find($user_id);
+        $user->name = $request->name;
+        $user->save();
+        return redirect()->back()->with('success','User Information Updated successfully');
     }
     public function userDetails(Request $request, $user_id)
     {
