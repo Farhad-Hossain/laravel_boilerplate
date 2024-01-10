@@ -24,16 +24,29 @@ class Controller extends BaseController
     public function view($subView, $data=[])
     {
         try {
-            $subView = view($subView, $data);
+            $data['title'] = array_key_exists('title', $data) ? $data['title'] : '';
+
+            $subView = view($subView, $data)->render();
+
             if ( $this->ajax ) {
-                return $subView;
+                return [
+                    'title'=> $data['title'],
+                    'html'=> $subView
+                ];
+
             } else {
                 return view($this->defaultView, [
-                    'subView' => $subView
+                    'subView' => $subView,
+                    'title'=> $data['title'],
                 ]);
+
             }
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return [
+                'html' => $e->getMessage(),
+            ];
+
         }
         
     }

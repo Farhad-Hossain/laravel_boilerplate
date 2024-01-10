@@ -11,7 +11,8 @@ class UserManageController extends Controller
     public function getUserList(Request $request)
     {
         $users = User::all();
-        return $this->view('pages.users', compact('users'));
+        $title = 'User List';
+        return $this->view('pages.users', compact('users', 'title'));
     }
     public function createUser(Request $request)
     {

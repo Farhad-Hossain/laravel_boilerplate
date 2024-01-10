@@ -38,7 +38,7 @@
                 <div class="menu-title">User Manage</div>
             </a>
             <ul>
-                <li> <a href="{{route('b.users.list')}}" title="Users"><i class='bx bx-radio-circle'></i>Users</a></li>
+                <li> <a href="{{route('b.users.list')}}"<i class='bx bx-radio-circle'></i>Users</a></li>
                 {{--
                 <li> <a href="{{route('b.users.create')}}" title="Create User"><i class='bx bx-radio-circle'></i>Create User</a></li>
                 --}}

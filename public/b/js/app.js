@@ -150,14 +150,5 @@ $(function() {
 	function theme8() {
 		$('html').attr('class', 'color-sidebar sidebarcolor8');
 	}
-
-	$(document).ready(function () {
-		window.addEventListener('popstate', function(){
-			window.location = document.location.href;
-		});
-
-		let title = $(`#page-title`).text() ?? '';
-		$(`#url-title`).text('Admin '+"| "+title);
-	});
 	
 });

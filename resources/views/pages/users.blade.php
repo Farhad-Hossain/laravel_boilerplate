@@ -1,4 +1,3 @@
-<x-title title="Users" />
 @component('inc.datatable', [
     'title' => 'Users',
     'headers' => [

@@ -1,35 +1,50 @@
 $(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 	e.preventDefault();
-
 	let page = $(this).attr("href");
 	let title = $(this).attr("title");
-
 	if (page == "javascript: void(0);") return false;
 
-	if ($(this).attr("target") == "_self") { window.location.href = page; return true };
 	if ($(this).attr("target") == "_blank") window.open(page, "_blank");
-
 	if (page == "javascript: void(0);") return false;
-	call_ajax_page(page, title);
+
+	load_ajax_page(page );
 });
 
-function call_ajax_page(page, title='') {
+function load_ajax_page(page, method='GET') {
 	history.pushState(null, null, page);
+	data = getJson(page, method)
+	$("#content").empty();
+	$("#content").html(data.html);
+	$(window).scrollTop(0);
 
-	$('#content').html(
-		`<div id="ajax-loader" class="spinner"></div>`	
-	);
-	$.ajax({
-		url: page,
-		cache: false,
-		dataType: "html",
-		type: "GET",
-		success: function (data) {
-			$("#content").empty();
-			$("#content").html(data);
-			$(window).scrollTop(0);
-		}
-	});
-	document.title = 'Admin | '+title;
+	// $.ajax({
+	// 	url: page,
+	// 	cache: false,
+	// 	dataType: "html",
+	// 	type: type,
+	// 	success: function (data) {
+	// 		$("#content").empty();
+	// 		data = JSON.parse(data);
+	// 		$("#content").html(data.html);
+	// 		$(window).scrollTop(0);
+	// 	}
+	// });
+
+	document.title = 'Admin | '+data.title;
 	htmx.process(document.body);
+	onLoad();
+}
+
+function getJson(url, method='GET', data={}) {
+	return JSON.parse($.ajax({
+		type: method,
+		url: url,
+		data: data,
+		dataType: 'json',
+		global: false,
+		async: false,
+		success: function (data) {
+			return data;
+		}
+	}).responseText);
 }

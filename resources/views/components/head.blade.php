@@ -15,12 +15,14 @@
 	<link href="{{asset('b')}}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="{{asset('b')}}/css/bootstrap-extended.css" rel="stylesheet">
 	<x-select_2_css />
+	<link href="{{asset('b')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="{{asset('b')}}/css/app.css" rel="stylesheet">
 	<link href="{{asset('b')}}/css/icons.css" rel="stylesheet">
 	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	
 	<!-- Theme Style CSS -->
 	<x-themes_css />
 	@stack('css')
-	<title id="url-title">Admin | {{  env('APP_NAME') }}</title>
+	<title id="url-title">Admin | {{  $title ?? '' }}</title>
 </head>

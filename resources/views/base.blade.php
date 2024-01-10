@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" class="dark-theme">
-<x-head />
+<x-head title="{{$title}}"/>
 <body>
 	<div class="wrapper">
 		@include('inc.sidebar')
@@ -19,6 +19,26 @@
 	@include('inc.search_modal')
 	@include('inc.theme_switcher')
 	<x-footer />
+	<script>
+		$(document).ready(function() {
+			onLoad();
+			
+		} );
+
+		function onLoad()
+		{
+			if ( $('#datatable').length == 1 ) {
+				var table = $('#datatable').DataTable( {
+					lengthChange: false,
+					buttons: [ 'copy', 'excel', 'pdf', 'print']
+				} );
+				
+				table.buttons().container()
+					.appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
+			}
+
+		}
+	</script>
 	@stack('js')
 </body>
 
