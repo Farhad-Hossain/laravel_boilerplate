@@ -12,10 +12,10 @@ class UserManageController extends Controller
     {
         $users = User::all();
         $title = 'User List';
-        return $this->view('pages.users', compact('users', 'title'));
+        return $this->view('pages/users', compact('users', 'title'));
     }
     public function createUser(Request $request)
-    {
+    {   
         if ( $request->method() == 'GET' ) {
             if ( $this->ajax ) {
                 return view('pages.users');
@@ -47,7 +47,8 @@ class UserManageController extends Controller
     public function userDetails(Request $request, $user_id)
     {
         $user = User::find($user_id);
-        return $this->view('pages.user_details', compact('user'));
+        $title = '-'.$user->name;
+        return $this->view('pages.user_details', compact('user', 'title'));
     }
     
 }

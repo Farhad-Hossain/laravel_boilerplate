@@ -22,6 +22,10 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () {
+    Route::group(['prefix'=>'software', 'as'=>'software.'], function (){
+        Route::match(['GET', 'POST'], '/settings', [B\SoftwareSettingsController::class, 'index'])->name('settings');
+    });
+
     Route::get('/dashboard', [B\DashboardController::class,'index'])->name('dashboard');
 
     Route::group(['prefix'=>'permission', 'as'=>'permission.'], function () {

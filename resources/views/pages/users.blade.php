@@ -52,13 +52,11 @@
     @endslot
 @endcomponent
 
-
-@slot('js')
 <script>
     $(document).on('click', `#add-user-btn`, function () {
         $(`#add-user-modal`).modal('show');
         htmx.process(document.body);
     })
 </script>
-@endslot
+
 

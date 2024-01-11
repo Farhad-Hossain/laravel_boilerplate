@@ -10,9 +10,9 @@ $(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 	load_ajax_page(page );
 });
 
-function load_ajax_page(page, method='GET') {
+function load_ajax_page(page, method='GET', data={}) {
 	history.pushState(null, null, page);
-	data = getJson(page, method)
+	data = getJson(page, method, data)
 	$("#content").empty();
 	$("#content").html(data.html);
 	$(window).scrollTop(0);
@@ -48,3 +48,5 @@ function getJson(url, method='GET', data={}) {
 		}
 	}).responseText);
 }
+
+

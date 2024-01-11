@@ -12,12 +12,14 @@ class PermissionManageController extends Controller
 {
     public function getRoles(Request $request)
     {
+        $title = 'Roles';
         $roles = Role::all();
-        return $this->view("pages.roles", compact("roles"));
+        return $this->view("pages.roles", compact("roles", "title"));
         
     }
     public function createRole(Request $request)
     {
+        $title = 'Create Role';
         $role = Role::create([
             'name'=> $request->name,
             'description'=>$request->description,
@@ -28,8 +30,9 @@ class PermissionManageController extends Controller
 
     public function getPermissions(Request $request)
     {
+        $title = "Permissions";
         $permissions = Permission::all();
-        return $this->view("inc.tables.permissions", compact('permissions'));
+        return $this->view("inc.tables.permissions", compact('permissions', 'title'));
     }
 
     public function createPermission(Request $request)
@@ -48,6 +51,7 @@ class PermissionManageController extends Controller
 
     public function getPostRoleDetails(Request $request, $roleId)
     {
+        $title = 'Role Details';
         $role = Role::find($roleId);
         $permissions = Permission::all();
 
@@ -58,6 +62,6 @@ class PermissionManageController extends Controller
                 $role->givePermissionTo($permission);
             }
         } 
-        return $this->view('pages.role_details', compact('role', 'permissions'));
+        return $this->view('pages.role_details', compact('role', 'permissions', 'title'));
     }
 }

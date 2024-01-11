@@ -22,7 +22,6 @@
 	<script>
 		$(document).ready(function() {
 			onLoad();
-			
 		} );
 
 		function onLoad()
@@ -37,7 +36,19 @@
 					.appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
 			}
 
+			if ( $('.d-form').length > 0 ) {
+				$('.d-form').on('submit', function (e){
+					e.preventDefault();
+					let url = $(this).attr('action');
+					let method = $(this).attr('method');
+					let data = $(this).serialize();
+					console.log(url, method, data);
+					load_ajax_page(url, method, data);
+				})
+			}
 		}
+
+		
 	</script>
 	@stack('js')
 </body>

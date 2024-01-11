@@ -9,11 +9,13 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return $this->view('pages.dashboard');   
+        $title = 'Dashboard';
+        return $this->view('pages.dashboard', compact('title'));
     }
 
     public function basic_table(Request $request)
     {
-        return $this->view('pages.basic_table');
+        $title = 'Basic table';
+        return $this->view('pages.basic_table', compact('title'));
     }
 }

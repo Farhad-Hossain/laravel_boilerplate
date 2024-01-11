@@ -4,4 +4,4 @@
     'value' => '',
     'name' => ''
 ])
-<input type="{{$type}}" name="{{$name}}" class="form-control form-control-sm" placeholder="{{$placeholder}}" value="{{$value}}">
+<input type="{{$type}}" name="{{$name}}" class="form-control form-control" placeholder="{{$placeholder}}" value="{{$value}}">
