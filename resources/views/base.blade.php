@@ -6,8 +6,6 @@
 		@include('inc.sidebar')
 		@include('inc.header')
 		<div class="page-wrapper">
-			<div class="page-content" id="alert-container" style="display: none;"></div>
-			<x-notify />
 			<div class="page-content" id="content">
 				{!! $subView !!}
 			</div>

@@ -13,26 +13,17 @@ $(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 function load_ajax_page(page, method='GET', data={}) {
 	history.pushState(null, null, page);
 	data = getJson(page, method, data)
-	$("#content").empty();
-	$("#content").html(data.html);
-	$(window).scrollTop(0);
 
-	// $.ajax({
-	// 	url: page,
-	// 	cache: false,
-	// 	dataType: "html",
-	// 	type: type,
-	// 	success: function (data) {
-	// 		$("#content").empty();
-	// 		data = JSON.parse(data);
-	// 		$("#content").html(data.html);
-	// 		$(window).scrollTop(0);
-	// 	}
-	// });
-
-	document.title = 'Admin | '+data.title;
-	htmx.process(document.body);
-	onLoad();
+	if ( 'errors' in data ) {
+		showErrors(data.errors);
+	} else {
+		$("#content").empty();
+		$("#content").html(data.html);
+		$(window).scrollTop(0);
+		document.title = 'Admin | '+data.title;
+		htmx.process(document.body);
+		onLoad();
+	}
 }
 
 function getJson(url, method='GET', data={}) {
@@ -47,6 +38,14 @@ function getJson(url, method='GET', data={}) {
 			return data;
 		}
 	}).responseText);
+}
+
+function showErrors(errors)
+{
+	$(`.btn-close`).trigger('click');
+	for ( let key in errors ) {
+		$(`.invalid-feedback-${key} .message`).html(errors[key]);
+	}
 }
 
 

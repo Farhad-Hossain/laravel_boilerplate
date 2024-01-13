@@ -5,15 +5,22 @@ namespace App\Http\Controllers\B;
 use App\Http\Controllers\Controller;
 use App\Models\SoftwareSetting;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveSoftwareSettings;
+use Illuminate\Support\Facades\Validator;
 
 class SoftwareSettingsController extends Controller
 {
-    public function index(Request $request)
+    public function index(SaveSoftwareSettings $request)
     {
         $title = 'Software Settings';
         $settings = SoftwareSetting::where('id','>',0)->first();
 
         if ( $request->isMethod('POST') ) {
+
+            $request->validate([
+                'org_name' => ['required', 'min:3'],
+            ]);
+
             if ( !$settings ) {
                 $settings = new SoftwareSetting();
             }
@@ -21,6 +28,7 @@ class SoftwareSettingsController extends Controller
             unset($attrs['_token']);
             $settings->fill($attrs);
             $settings->save();
+            session()->flash('success','Infarmation saved');
         }
 
         return $this->view('pages/settings/index', compact('title','settings'));
