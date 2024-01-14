@@ -43,6 +43,7 @@ function getJson(url, method='GET', data={}) {
 function showErrors(errors)
 {
 	$(`.btn-close`).trigger('click');
+	$(`.message`).html('');
 	for ( let key in errors ) {
 		$(`.invalid-feedback-${key} .message`).html(errors[key]);
 	}
