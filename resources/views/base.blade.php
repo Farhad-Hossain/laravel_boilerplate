@@ -56,12 +56,31 @@
 			}
 
 
+			// Dynamic form submit by ajax and return the page
 			$(`body`).on('submit', '.d-form', function (e){
 				e.preventDefault();
 				let url = $(this).attr('action');
 				let method = $(this).attr('method');
 				let data = $(this).serialize();
 				load_ajax_page(url, method, data);
+			})
+
+			// Dynamic modal form submit by ajax and reload the page
+			$(`#common-modal`).on('submit', '.d-modal-form', function (e){
+				e.preventDefault();
+				let url = $(this).attr('action');
+				let method = $(this).attr('method');
+				let formData = $(this).serialize();
+
+				let data = getJson(url, method, formData);
+				if ( 'errors' in data ) {
+					showErrors(data.errors);
+					return 0;
+				} else {
+					$(`.message`).html('');
+					$(this).find('.modal-close-btn').click();
+					load_ajax_page(window.location);
+				}
 			})
 			
 

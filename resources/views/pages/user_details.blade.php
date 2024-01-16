@@ -9,13 +9,13 @@
     <x-card.body>
         <x-form.form action="{{route('b.users.save', ['user_id'=>$user->id])}}" method="POST">
             
-            <x-form.column class="col-md-3" label="Name">
+            <x-form.col class="col-md-3" label="Name">
                 <x-form.input type="text" name="name" placeholder="Name..." value="{{$user->name}}" />
-            </x-from.column>
+            </x-from.col>
 
-            <x-form.column class="col-md-3" label="Email">
+            <x-form.col class="col-md-3" label="Email">
                 <x-form.input type="email" name="email" placeholder="Email..." value="{{$user->email}}" />
-            </x-from.column>
+            </x-from.col>
 
             <x-form.submit class="" text="Save Changes" />
 

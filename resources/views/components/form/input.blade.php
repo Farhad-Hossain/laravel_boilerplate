@@ -7,6 +7,6 @@
 ])
 <input type="{{$type}}" name="{{$name}}" 
     {{ $attributes->merge([
-        'class' => 'form-control '.$class
+        'class' => 'form-control mb-1'.$class
     ]) }} 
     placeholder="{{$placeholder}}" value="{{$value}}" />

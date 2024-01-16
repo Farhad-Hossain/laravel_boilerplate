@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\B;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserManageController extends Controller
@@ -37,14 +39,17 @@ class UserManageController extends Controller
         }
         return view('base');
     }
-    public function saveUser(Request $request, $user_id=null)
+    public function saveUser(SaveUserRequest $request, $user_id=null)
     {
         $user = $user_id ? User::find($user_id) : (new User());
         if ( $request->method() == 'GET' ) {
             return $this->view('pages/user/create_update_form', compact('user'));
         } else {
             $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
             $user->save();    
+            session()->flash('success','User information saved successfully');
             return $this->view('pages/user/create_update_form', compact('user'));
         }
     }
