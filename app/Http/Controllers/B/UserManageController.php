@@ -37,12 +37,16 @@ class UserManageController extends Controller
         }
         return view('base');
     }
-    public function saveUser(Request $request, $user_id)
+    public function saveUser(Request $request, $user_id=null)
     {
-        $user = User::find($user_id);
-        $user->name = $request->name;
-        $user->save();
-        return redirect()->back()->with('success','User Information Updated successfully');
+        $user = $user_id ? User::find($user_id) : (new User());
+        if ( $request->method() == 'GET' ) {
+            return $this->view('pages/user/create_update_form', compact('user'));
+        } else {
+            $user->name = $request->name;
+            $user->save();    
+            return $this->view('pages/user/create_update_form', compact('user'));
+        }
     }
     public function userDetails(Request $request, $user_id)
     {

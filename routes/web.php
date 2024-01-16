@@ -37,11 +37,10 @@ Route::group(['prefix'=>'admin', 'as'=>'b.', 'middleware'=>'auth'], function () 
         Route::post('/permisions/create', [B\PermissionManageController::class, 'createPermission'])->name('permission.create');
     });
 
-    Route::group(['prefix'=>'users', 'as'=>'users.'], function (){
+    Route::group(['prefix'=>'user', 'as'=>'users.'], function (){
         Route::get('/list', [B\UserManageController::class, 'getUserList'])->name('list');
-        Route::match(['GET', 'POST'], '/create', [B\UserManageController::class, 'createUser'])->name('create');
+        Route::match(['GET', 'POST'], '/save/{user_id?}', [B\UserManageController::class, 'saveUser'])->name('save');
         Route::get('/user/{id}', [B\UserManageController::class, 'userDetails'])->name('details');
-        Route::post('/save-user/{user_id}', [B\UserManageController::class, 'saveUser'])->name('save');
     });
 
 

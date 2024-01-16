@@ -2,6 +2,11 @@
     'type' => 'text',
     'placeholder' => '',
     'value' => '',
-    'name' => ''
+    'name' => '',
+    'class' => ''
 ])
-<input type="{{$type}}" name="{{$name}}" class="form-control form-control" placeholder="{{$placeholder}}" value="{{$value}}">
+<input type="{{$type}}" name="{{$name}}" 
+    {{ $attributes->merge([
+        'class' => 'form-control '.$class
+    ]) }} 
+    placeholder="{{$placeholder}}" value="{{$value}}" />
