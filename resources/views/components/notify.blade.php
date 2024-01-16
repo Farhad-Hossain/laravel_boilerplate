@@ -3,9 +3,7 @@
         <div class="text-white">{{ session('success') }}</div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @php
-        request()->session()->forget('success');
-    @endphp
+    
 @endif
 
 @if( session('error') )
@@ -13,6 +11,10 @@
         <div class="text-white">{{ session('error') }}</div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    request()->session()->forget('error');
+    
 @endif
+
+@php
+    request()->session()->forget('error');
+@endphp
 

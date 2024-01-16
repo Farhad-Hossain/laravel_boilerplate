@@ -38,13 +38,6 @@ function getJson(url, method='GET', data={}) {
 	}).responseText);
 }
 
-function showErrors(errors)
-{
-	// $(`.btn-close`).trigger('click');
-	$(`.message`).html('');
-	for ( let key in errors ) {
-		$(`.invalid-feedback-${key} .message`).html(errors[key]);
-	}
-}
+
 
 

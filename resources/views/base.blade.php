@@ -20,7 +20,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="common-modal-title"></h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<button type="button" class="modal-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body" id="common-modal-body-content">
 					
@@ -38,13 +38,9 @@
 	@include('inc.search_modal')
 	@include('inc.theme_switcher')
 	<x-footer />
+
 	<script>
 		$(document).ready(function() {
-			onLoad();
-		} );
-
-		function onLoad()
-		{
 			if ( $('#datatable').length == 1 ) {
 				var table = $('#datatable').DataTable( {
 					lengthChange: false,
@@ -54,9 +50,15 @@
 				table.buttons().container()
 					.appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
 			}
+			$(window).on('popstate', function(event) {
+				load_ajax_page(window.location);
+			});
+			onLoad();
+		} );
 
-
-			// Dynamic form submit by ajax and return the page
+		function onLoad()
+		{
+			// Form will be submited by ajax and return the page
 			$(`body`).on('submit', '.d-form', function (e){
 				e.preventDefault();
 				let url = $(this).attr('action');
@@ -65,7 +67,18 @@
 				load_ajax_page(url, method, data);
 			})
 
-			// Dynamic modal form submit by ajax and reload the page
+			// By clicking the link, This Method will load the view and show the content in modal
+			$(`body`).on(`click`, '.d-modal-link', function (e) {
+				e.preventDefault();
+				let url = $(this).attr('href');
+				let data = getJson(url)
+
+				$(`#common-modal-title`).html( $(this).attr(`title`) );
+				$(`#common-modal-body-content`).html(data.html);
+				$(`#common-modal`).modal('show');
+			});
+
+			// The form will be submited and reload the current page
 			$(`#common-modal`).on('submit', '.d-modal-form', function (e){
 				e.preventDefault();
 				let url = $(this).attr('action');
@@ -78,21 +91,21 @@
 					return 0;
 				} else {
 					$(`.message`).html('');
-					$(this).find('.modal-close-btn').click();
+					$(this).find('.modal-btn-close').trigger('click');
 					load_ajax_page(window.location);
 				}
-			})
+			})	
+
+			function showErrors(errors)
+			{
+				// $(`.btn-close`).trigger('click');
+				$(`.message`).html('');
+				for ( let key in errors ) {
+					$(`.invalid-feedback-${key} .message`).html(errors[key]);
+				}
+			}
+
 			
-
-			$(`body`).on(`click`, '.d-modal-link', function (e) {
-				e.preventDefault();
-				let url = $(this).attr('href');
-				let data = getJson(url)
-
-				$(`#common-modal-title`).html( $(this).attr(`title`) );
-				$(`#common-modal-body-content`).html(data.html);
-				$(`#common-modal`).modal('show');
-			});
 		}
 	</script>
 	@stack('js')

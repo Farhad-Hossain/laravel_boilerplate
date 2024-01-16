@@ -1,4 +1,4 @@
-
+<x-notify />
 <x-card.card>
     
     <x-card.header title="User's List">
