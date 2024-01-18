@@ -1,5 +1,6 @@
+<x-notify />
 <div class="card">
-    <x-notify />
+    
     <x-card.header>
         <span class='h6'>Software Setting</span>
     </x-card-header>

@@ -17,10 +17,6 @@ class SoftwareSettingsController extends Controller
 
         if ( $request->isMethod('POST') ) {
 
-            $request->validate([
-                'org_name' => ['required', 'min:3'],
-            ]);
-
             if ( !$settings ) {
                 $settings = new SoftwareSetting();
             }
@@ -28,6 +24,7 @@ class SoftwareSettingsController extends Controller
             unset($attrs['_token']);
             $settings->fill($attrs);
             $settings->save();
+
             session()->flash('success','Infarmation saved');
         }
 

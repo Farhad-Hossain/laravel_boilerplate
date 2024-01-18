@@ -9,7 +9,7 @@
 			<div class="page-content" id="content">
 				{!! $subView !!}
 			</div>
-			<x-scripts />
+			
 		</div>
 		 <div class="overlay toggle-icon"></div>
 		 <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
@@ -38,10 +38,12 @@
 	@include('inc.search_modal')
 	@include('inc.theme_switcher')
 	<x-footer />
+	<x-scripts />
 
 	<script>
 		$(document).ready(function() {
 			if ( $('#datatable').length == 1 ) {
+				
 				var table = $('#datatable').DataTable( {
 					lengthChange: false,
 					buttons: [ 'copy', 'excel', 'pdf', 'print']
@@ -50,9 +52,11 @@
 				table.buttons().container()
 					.appendTo( '#datatable_wrapper .col-md-6:eq(0)' );
 			}
+
 			$(window).on('popstate', function(event) {
 				load_ajax_page(window.location);
 			});
+
 			onLoad();
 		} );
 
@@ -86,26 +90,17 @@
 				let formData = $(this).serialize();
 
 				let data = getJson(url, method, formData);
+
 				if ( 'errors' in data ) {
 					showErrors(data.errors);
 					return 0;
+
 				} else {
 					$(`.message`).html('');
 					$(this).find('.modal-btn-close').trigger('click');
 					load_ajax_page(window.location);
 				}
 			})	
-
-			function showErrors(errors)
-			{
-				// $(`.btn-close`).trigger('click');
-				$(`.message`).html('');
-				for ( let key in errors ) {
-					$(`.invalid-feedback-${key} .message`).html(errors[key]);
-				}
-			}
-
-			
 		}
 	</script>
 	@stack('js')

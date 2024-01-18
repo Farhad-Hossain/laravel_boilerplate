@@ -3,24 +3,34 @@ $(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 	let page = $(this).attr("href");
 	if (page == "javascript: void(0);") return false;
 	if ($(this).attr("target") == "_blank") window.open(page, "_blank");
-	load_ajax_page(page);
+	let data = load_ajax_page(page);
+
+	if ( $(this).attr('d-after-request') ) {
+		$(this).attr('d-after-request')(data);
+	}
+	
+	onLoad();
 });
 
 function load_ajax_page(page, method='GET', data={}) {
-	history.pushState(null, null, page);
+	
 	data = getJson(page, method, data)
 
 	if ( 'errors' in data ) {
 		showErrors(data.errors);
+		return null;
 
 	} else {
-		$("#content").empty();
-		$("#content").html(data.html);
+		history.pushState(null, null, page);
+		
+		if ( data.html ) {
+			$("#content").empty();
+			$("#content").html(data.html);
+		}
+		
 		$(window).scrollTop(0);
 		document.title = 'Admin | '+data.title;
-		htmx.process(document.body);
-		onLoad();
-		
+		return data;
 	}
 }
 
@@ -36,6 +46,14 @@ function getJson(url, method='GET', data={}) {
 			return data;
 		}
 	}).responseText);
+}
+
+function showErrors(errors)
+{
+	$(`.message`).html('');
+	for ( let key in errors ) {
+		$(`.invalid-feedback-${key} .message`).html(errors[key]);
+	}
 }
 
 
