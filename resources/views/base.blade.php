@@ -1,6 +1,31 @@
 <!doctype html>
 <html lang="en" class="dark-theme">
-<x-head title="{{$title}}"/>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="{{asset('b')}}/images/favicon-32x32.png" type="image/png" />
+	<!--plugins-->
+	<link href="{{asset('b')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="{{asset('b')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="{{asset('b')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{{asset('b')}}/css/pace.min.css" rel="stylesheet" />
+	<script src="{{asset('b')}}/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{{asset('b')}}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{asset('b')}}/css/bootstrap-extended.css" rel="stylesheet">
+	<x-select_2_css />
+	<link href="{{asset('b')}}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="{{asset('b')}}/css/app.css" rel="stylesheet">
+	<link href="{{asset('b')}}/css/icons.css" rel="stylesheet">
+	<!-- Theme Style CSS -->
+	<x-themes_css />
+	<title id="url-title">Admin | {{  $title ?? '' }}</title>
+	@stack('css')
+</head>
 <body>
 	<div class="wrapper">
 		@include('inc.sidebar')
@@ -15,6 +40,7 @@
 		 <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 	</div>
 
+	<!-- START:: MODAL CONTAINER -->
 	<div class="modal fade" id="common-modal" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
@@ -34,14 +60,23 @@
 			</div>
 		</div>
 	</div>
+	<!-- END:: MODAL CONTAINER -->
 
 	@include('inc.search_modal')
 	@include('inc.theme_switcher')
-	<x-footer />
+	<footer class="page-footer">
+		<p class="mb-0">Copyright © {{ date('Y') }}. All right reserved.</p>
+	</footer>
+	
 	<x-scripts />
 
 	<script>
 		$(document).ready(function() {
+			onLoad();
+		} );
+
+		function onLoad()
+		{
 			if ( $('#datatable').length == 1 ) {
 				
 				var table = $('#datatable').DataTable( {
@@ -57,11 +92,6 @@
 				load_ajax_page(window.location);
 			});
 
-			onLoad();
-		} );
-
-		function onLoad()
-		{
 			// Form will be submited by ajax and return the page
 			$(`body`).on('submit', '.d-form', function (e){
 				e.preventDefault();
@@ -85,6 +115,7 @@
 			// The form will be submited and reload the current page
 			$(`#common-modal`).on('submit', '.d-modal-form', function (e){
 				e.preventDefault();
+
 				let url = $(this).attr('action');
 				let method = $(this).attr('method');
 				let formData = $(this).serialize();
@@ -97,7 +128,7 @@
 
 				} else {
 					$(`.message`).html('');
-					$(this).find('.modal-btn-close').trigger('click');
+					$('.modal-btn-close').trigger('click');
 					load_ajax_page(window.location);
 				}
 			})	

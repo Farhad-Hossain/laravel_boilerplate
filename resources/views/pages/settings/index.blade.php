@@ -6,7 +6,7 @@
     </x-card-header>
 
     <div class="card-body">
-        <x-form.form method="POST" class="d-form" action="{{route('b.software.settings')}}">
+        <x-form method="POST" class="d-form" action="{{route('b.software.settings')}}">
             
             <x-form.col label="Organization name" class="col-md-6">
                 <x-form.input name="org_name" value="{{ $settings ? $settings->org_name : '' }}" />
@@ -35,6 +35,6 @@
 
             <x-form.submit text="Save Changes" />
 
-        </x-form.form>
+        </x-form>
     </div>
 </div>

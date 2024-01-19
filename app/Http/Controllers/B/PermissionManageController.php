@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\B;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateRoleRequest;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Auth;
 
@@ -14,18 +15,31 @@ class PermissionManageController extends Controller
     {
         $title = 'Roles';
         $roles = Role::all();
-        return $this->view("pages.roles", compact("roles", "title"));
+        return $this->view("pages/user/roles", 
+            compact("roles", "title")
+        );
         
     }
-    public function createRole(Request $request)
+
+    public function getRoleForm(Request $request, $role=(new Role()) )
     {
-        $title = 'Create Role';
-        $role = Role::create([
-            'name'=> $request->name,
-            'description'=>$request->description,
-            'guard_name'=>Auth::getDefaultDriver(),
+        $title = 'Role';
+        return $this->view('/pages/user/role_form', 
+            compact('role', 'title'),
+        );
+    }
+    public function createRole(CreateRoleRequest $request, Role $role=null )
+    {
+        $role = $role ?? new Role();
+        $role->name = $request->name;
+        $role->description = $request->description;
+        $role->guard_name = Auth::getDefaultDriver();
+        $role->save();
+        session()->flash('success', 'Information saved successfully');
+        
+        return response()->json([
+            'message' => 'Information saved successfully'
         ]);
-        return "Role ".$role->name." created successfully.";
     }
 
     public function getPermissions(Request $request)

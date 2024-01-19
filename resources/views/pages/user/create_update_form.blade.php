@@ -1,4 +1,4 @@
-<x-form.form 
+<x-form 
     class="d-modal-form" 
     action="{{ route('b.users.save', ['user_id' => $user->id ?? '']) }}" 
     method="POST" 
@@ -26,4 +26,4 @@
     </x-form.col>
     
 
-</x-form.form>
+</x-form>

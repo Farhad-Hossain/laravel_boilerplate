@@ -7,7 +7,7 @@
     </x-card.header>
 
     <x-card.body>
-        <x-form.form action="{{route('b.users.save', ['user_id'=>$user->id])}}" method="POST">
+        <x-form action="{{route('b.users.save', ['user_id'=>$user->id])}}" method="POST">
             
             <x-form.col class="col-md-3" label="Name">
                 <x-form.input type="text" name="name" placeholder="Name..." value="{{$user->name}}" />
@@ -19,6 +19,6 @@
 
             <x-form.submit class="" text="Save Changes" />
 
-        </x-form.form>
+        </x-form>
     </x-card.body>
 </x-card.card>

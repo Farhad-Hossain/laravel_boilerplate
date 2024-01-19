@@ -1,1 +1,0 @@
-<label for="">{{ isset($text) ? $text : '' }}</label>

@@ -1,7 +1,11 @@
 $(document.body).on("click", ".metismenu li a, .d-link", function (e) {
 	e.preventDefault();
 	let page = $(this).attr("href");
-	if (page == "javascript: void(0);") return false;
+	
+	if ( page == "javascript:;" ) {
+		return false;
+	}
+
 	if ($(this).attr("target") == "_blank") window.open(page, "_blank");
 	let data = load_ajax_page(page);
 
@@ -21,7 +25,9 @@ function load_ajax_page(page, method='GET', data={}) {
 		return null;
 
 	} else {
-		history.pushState(null, null, page);
+		if ( window.location.href != page ) {
+			history.pushState(null, null, page);
+		}
 		
 		if ( data.html ) {
 			$("#content").empty();
